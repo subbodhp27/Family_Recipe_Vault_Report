@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Recipe Details</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 id="title"></h1>
+<p id="ingredients"></p>
+<p id="instructions"></p>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+
+fetch(`http://localhost:5000/recipes/${id}`)
+.then(res => res.json())
+.then(data => {
+    document.getElementById('title').innerText = data.title;
+    document.getElementById('ingredients').innerText = data.ingredients;
+    document.getElementById('instructions').innerText = data.instructions;
+});
+</script>
+
+</body>
+</html>
